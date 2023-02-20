@@ -190,6 +190,13 @@ try {
             -PrincipalId $ReaderGroup.Id `
             -DirectoryScopeId "/"
 
+        ## Application Administrator
+        $ReaderGroup = $Global:TenantGroups | Where-Object {$_.DisplayName -eq "Legal"}
+        New-MgRoleManagementDirectoryRoleAssignment `
+            -RoleDefinitionId "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3" `
+            -PrincipalId $ReaderGroup.Id `
+            -DirectoryScopeId "/"
+
         $CompletedSteps++
     } catch {
         throw " Could not assign roles.`r`n $_"
